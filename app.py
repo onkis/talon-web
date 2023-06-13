@@ -12,6 +12,11 @@ def extract_from_html():
     html = request.get_data(as_text=True)
     return quotations.extract_from_html(html)
 
+@app.route('/reply/extract_from_plain', methods=['POST'])
+def extract_from_plain():
+    html = request.get_data(as_text=True)
+    return quotations.extract_from_plain(html)
+
 
 @app.route('/health')
 def health():

@@ -24,4 +24,4 @@ ENV PATH=/root/.local/bin:$PATH
 
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["python", "healthcheck.py"]
 
-ENTRYPOINT ["gunicorn", "app:app", "--bind=0.0.0.0:5000", "--log-level=error", "--workers=4"]
+ENTRYPOINT ["gunicorn", "app:app", "--bind=0.0.0.0:5000", "--log-level=info", "--workers=4"]

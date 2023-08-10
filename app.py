@@ -10,16 +10,15 @@ app = Flask(__name__)
 
 @app.route('/reply/extract_from_html', methods=['POST'])
 def extract_from_html():
-    body = request.get_json()
-    msg = quotations.extract_from_html(body.msg)
+    html = request.get_data(as_text=True)
+    msg = quotations.extract_from_html(html)
     text, signature = extract_signature(msg)
     return text
 
 @app.route('/reply/extract_from_plain', methods=['POST'])
 def extract_from_plain():
-    body = request.get_json()
-
-    msg = quotations.extract_from_plain(body.msg)
+    data = request.get_data(as_text=True)
+    msg = quotations.extract_from_plain(data)
 
     text, signature = extract_signature(msg)
 

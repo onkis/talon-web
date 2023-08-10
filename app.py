@@ -1,7 +1,3 @@
-import talon
-talon.init()
-
-from talon import signature
 from talon import quotations
 from talon.signature.bruteforce import extract_signature
 
@@ -16,7 +12,7 @@ app = Flask(__name__)
 def extract_from_html():
     body = request.json
     msg = quotations.extract_from_html(body["msg"])
-    text, signature = signature.extract(msg, sender=body["sender"])
+    text, signature = extract_signature(msg)
     return text
 
 @app.route('/reply/extract_from_plain', methods=['POST'])
@@ -25,7 +21,7 @@ def extract_from_plain():
 
     msg = quotations.extract_from_plain(body["msg"])
 
-    text, signature = signature.extract(msg, sender=body["sender"])
+    text, signature = extract_signature(msg)
 
     return text
 
